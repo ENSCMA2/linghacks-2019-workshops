@@ -4,9 +4,7 @@ import random
 import csv
 import nltk
 import string
-from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC

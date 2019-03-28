@@ -4,9 +4,7 @@ import random
 import csv
 import nltk
 import string
-from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
@@ -15,8 +13,10 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 from collections import Counter
 
+# load the master data sheet
 data = list(csv.reader(open("formspring_data.csv", mode="r+")))[1:]
 
+# generate the labels or "answers"
 answers = []
 print(data[0])
 for i in range(len(data)):
@@ -27,6 +27,8 @@ for i in range(len(data)):
 	else:
 		answers.append(0)
 answers = np.array(answers)
+
+# process the text data
 text = [point[1] for point in data]
 
 stop_words = stopwords.words("english")
