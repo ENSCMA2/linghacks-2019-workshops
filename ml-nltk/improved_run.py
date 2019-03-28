@@ -3,21 +3,16 @@ import math
 import random
 import csv
 import nltk
+import string
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
-from pprint import pprint
-from sklearn.preprocessing import MultiLabelBinarizer
-from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from sklearn.model_selection import train_test_split
 import numpy as np
-import time
-from scipy.sparse import csr_matrix
-import pandas as pd
 from collections import Counter
 
 data = list(csv.reader(open("formspring_data.csv", mode="r+")))[1:]
@@ -40,6 +35,17 @@ data = tox + random.sample(nontox, len(tox))
 text = np.array([point[0] for point in data])
 answers = np.array([point[1] for point in data])
 
+stop_words = stopwords.words("english")
+exclude = set(string.punctuation)
+lemma = WordNetLemmatizer()
+
+def clean(doc):
+   stop_free = " ".join([i for i in doc.lower().split() if i not in stop_words])
+   punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
+   normalized = " ".join(lemma.lemmatize(word) for word in punc_free.split())
+   return normalized
+
+text = np.array([clean(point) for point in text])
 
 train_data, test_data , train_labels, test_labels = train_test_split(text,answers,test_size=.2)
 
