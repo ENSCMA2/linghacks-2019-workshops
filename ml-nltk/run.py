@@ -1,5 +1,3 @@
-import os
-import math
 import random
 import csv
 import nltk
