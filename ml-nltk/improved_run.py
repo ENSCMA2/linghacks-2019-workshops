@@ -10,7 +10,8 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 from sklearn.model_selection import train_test_split
 import numpy as np
 from collections import Counter
-
+nltk.download("stopwords")
+nltk.download("wordnet")
 data = list(csv.reader(open("formspring_data.csv", mode="r+")))[1:]
 
 answers = []
@@ -24,7 +25,6 @@ for i in range(len(data)):
 answers = np.array(answers)
 text = np.array([point[1] for point in data])
 agg_data = [[text[i], answers[i]] for i in range(len(answers))]
-print("done aggregating")
 nontox = [point for point in agg_data if point[1] == 0]
 tox = [point for point in agg_data if point[1] == 1]
 data = tox + random.sample(nontox, len(tox))

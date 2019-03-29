@@ -10,6 +10,8 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 from sklearn.model_selection import train_test_split
 import numpy as np
 from collections import Counter
+nltk.download("stopwords")
+nltk.download("wordnet")
 
 # load the master data sheet
 data = list(csv.reader(open("formspring_data.csv", mode="r+")))[1:]
