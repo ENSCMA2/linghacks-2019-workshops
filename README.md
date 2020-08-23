@@ -1,5 +1,5 @@
 # LingHacks 2019 Workshops
-Workshops given at LingHacks II (03/2019): Intro to Python, Machine Learning + NLTK, Intro to Deep Learning
+Workshops given at [LingHacks II](http://linghacks.tech/linghacks-ii) (03/2019): Intro to Python, Machine Learning + NLTK, Intro to Deep Learning
 ## Usage
 The following commands assume that you are in the root directory of this repo (i.e. `[your-computer]/linghacks-2019-workshops`).  
 To run the introduction to Python:
